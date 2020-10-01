@@ -77,19 +77,21 @@
                 android:fontFamily="@font/nunito_sans_bold"
                 android:padding="@dimen/_6sdp"
                 android:text="New Note"
+                android:textIsSelectable="true"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/_12sdp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline10"
                 app:layout_constraintStart_toStartOf="@+id/guideline9"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-            <TextView
+            <EditText
                 android:id="@+id/descText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:fontFamily="@font/nunito_sans"
                 android:padding="@dimen/_6sdp"
+                android:textIsSelectable="true"
                 android:text="Description"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/_11sdp"
