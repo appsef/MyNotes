@@ -36,7 +36,7 @@ public class NoteRepo {
         }.execute();
     }
 
-    public void updateTask(final Notes notes) {
+    public void updateNote(final Notes notes) {
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
