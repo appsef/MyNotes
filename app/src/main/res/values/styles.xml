@@ -10,7 +10,9 @@
         <item name="statusBarBackground">@android:color/transparent</item>
         <item name="android:fitsSystemWindows">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
+        <item name="snackbarStyle">@style/Widget.MaterialComponents.Snackbar.FullWidth</item>
 
     </style>
+
 
 </resources>
