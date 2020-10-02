@@ -92,6 +92,7 @@
                 android:background="@null"
                 android:fontFamily="@font/nunito_sans"
                 android:padding="@dimen/_6sdp"
+                android:autoLink="all"
                 android:textIsSelectable="true"
                 android:text="Description"
                 android:textColor="@color/colorBlack"
