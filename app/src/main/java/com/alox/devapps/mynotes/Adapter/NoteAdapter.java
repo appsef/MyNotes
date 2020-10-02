@@ -65,6 +65,11 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         return notes.size();
     }
 
+
+    public Notes getNote(int position) {
+        return notes.get(position);
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView title,desc,date;
         FrameLayout card;

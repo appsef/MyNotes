@@ -1,10 +1,13 @@
 package com.alox.devapps.mynotes;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.collection.ArraySet;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -49,7 +52,12 @@ public class MainActivity extends AppCompatActivity {
         ImageButton addNote = findViewById(R.id.addNoteBtn);
         mainView = findViewById(R.id.mainRV);
         /*mainView.setLayoutManager(new GridLayoutManager(this,2));*/
-        mainView.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+        mainView.setLayoutManager(new LinearLayoutManager(this));
+        /*StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
+        layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
+        mainView.setLayoutManager(layoutManager);*/
+        mainView.setHasFixedSize(true);
+        /*mainView.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));*/
 
         /*Set<String> notes = mPreferences.getStringSet("notes",null);
 
@@ -74,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
         });*/
 
         refreshNotes();
+        enableSwipeToDelete();
 
 
         addNote.setOnClickListener(new View.OnClickListener() {
@@ -135,5 +144,21 @@ public class MainActivity extends AppCompatActivity {
             mainView.setAdapter(noteAdapter);
         }
 
+    }
+
+    private void enableSwipeToDelete() {
+        SwipeToDeleteCallback swipeToDeleteCallback = new SwipeToDeleteCallback(this) {
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                NoteAdapter adapter = (NoteAdapter) mainView.getAdapter();
+                if (adapter!=null) {
+                    noteRepo.deleteNotes(adapter.getNote(viewHolder.getAdapterPosition()));
+                    adapter.notifyItemChanged(viewHolder.getAdapterPosition());
+                }
+            }
+        };
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipeToDeleteCallback);
+        itemTouchHelper.attachToRecyclerView(mainView);
     }
 }
