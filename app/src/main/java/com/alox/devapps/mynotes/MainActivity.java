@@ -19,7 +19,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 
 import com.alox.devapps.mynotes.Adapter.NoteAdapter;
 import com.alox.devapps.mynotes.Database.NoteRepo;
@@ -91,14 +90,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent newNote = new Intent(MainActivity.this,AddActivity.class);
                 startActivity(newNote);
-            }
-        });
-
-        ImageView logo = findViewById(R.id.imageView);
-        logo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, InfoActivity.class));
             }
         });
     }
